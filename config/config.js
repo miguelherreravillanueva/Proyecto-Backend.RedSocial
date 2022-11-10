@@ -4,10 +4,10 @@ const { MONGO_URI } = require("./keys");
 const dbConnection = async () => {
     try {
         await mongoose.connect(MONGO_URI);
-        console.log("Database succefullu created");
+        console.log("Database succesfully created");
     } catch (error) {
         console.error(error);
-        throw new Error("Error while inicialiting database");
+        throw new Error("Error while running database");
     }
 };
 
