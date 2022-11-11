@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const PostController = {
     async createPost(req, res) {
         try {
-            const post = await Post.create({ ...req.body });
+            const post = await Post.create({ ...req.body, userId: req.user._id });
             res.status(201).send(post);
         } catch (error) {
             console.error(error)
@@ -15,8 +15,10 @@ const PostController = {
         try {
             const post = await Post.findByIdAndUpdate(
                 req.params._id,
-                req.body,
-                { new: true }
+                { ...req.body, userId: req.user._id },
+                {
+                    new: true,
+                }
             );
             res.send({ message: "Post successfully updated", post });
         } catch (error) {
@@ -55,16 +57,16 @@ const PostController = {
 
     async getPostById(req, res) {
         try {
-          const post = await Post.findById(req.params._id);
-          res.send(post);
+            const post = await Post.findById(req.params._id);
+            res.send(post);
         } catch (error) {
-          console.error(error);
-          res.status(500).send({
-            msg: "Error while getting the post",
-            error,
-          });
+            console.error(error);
+            res.status(500).send({
+                msg: "Error while getting the post",
+                error,
+            });
         }
-      },
+    },
 }
 
 module.exports = PostController;

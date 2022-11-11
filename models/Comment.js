@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.SchemaTypes.ObjectId;
 
-const PostSchema = new mongoose.Schema({
-    title: String,
+const CommentSchema = new mongoose.Schema({
     body: String,
     userId: {
         type: ObjectId,
@@ -10,10 +9,6 @@ const PostSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-PostSchema.index({
-    title: "text",
-});
+const Comment = mongoose.model('Comment', CommentSchema);
 
-const Post = mongoose.model('Post', PostSchema);
-
-module.exports = Post;
+module.exports = Comment;
