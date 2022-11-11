@@ -5,6 +5,10 @@ const PostSchema = new mongoose.Schema({
     body: String,
 }, { timestamps: true });
 
+PostSchema.index({
+    title: "text",
+});
+
 const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
