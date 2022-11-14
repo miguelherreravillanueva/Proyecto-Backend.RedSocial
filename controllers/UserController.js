@@ -61,6 +61,7 @@ const UserController = {
   async getInfoUser(req, res) {
     try {
       const user = await User.findById(req.user._id).populate({
+        path: "commentIds",
         populate: {
          path: "postIds",
        },
