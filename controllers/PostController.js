@@ -1,13 +1,13 @@
 const Post = require("../models/Post");
 
 const PostController = {
-    async createPost(req, res) {
+    async createPost(req, res, next) {
         try {
             const post = await Post.create({ ...req.body, userId: req.user._id });
             res.status(201).send(post);
         } catch (error) {
             console.error(error)
-            res.status(500).send({ message: 'Error while posting' })
+            next(error)
         }
     },
 
@@ -15,7 +15,7 @@ const PostController = {
         try {
             const post = await Post.findByIdAndUpdate(
                 req.params._id,
-                { ...req.body, userId: req.user._id },
+                { title: req.body.title, body: req.body.body },
                 {
                     new: true,
                 }
@@ -67,6 +67,47 @@ const PostController = {
             });
         }
     },
+    async likePost(req, res) {
+        try {
+            const post = await Post.findByIdAndUpdate(
+                req.params._id,
+                { $push: { likes: req.user._id } },
+                { new: true }
+            );
+            res.send(post);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: "There was a problem with your like" });
+        }
+    },
+
+    // async dropLikePost(req, res) {
+    //     try {
+    //         const post = await Post.findByIdAndDelete(
+    //             req.params._id,
+    //             { $pull: { likes: req.user._id } },
+    //             { new: true }
+    //         );
+    //         res.send(post);
+    //     } catch (error) {
+    //         console.error(error);
+    //         res.status(500).send({ message: "There was a problem while dropping your like" });
+    //     }
+    // },
+
+    async getAllPosts(req, res) {
+        try {
+            const { page = 1, limit = 10 } = req.query;
+            const post = await Post.find()
+                .limit(limit)
+                .skip((page - 1) * limit);
+            res.send(post);
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+  
 }
 
 module.exports = PostController;

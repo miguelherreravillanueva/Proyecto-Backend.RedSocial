@@ -6,12 +6,18 @@ const { jwt_secret } = require("../config/keys.js");
 const UserController = {
   async createUser(req, res, next) {
     try {
-      const password = await bcrypt.hash(req.body.password, 10);
+      let password;
+      if(req.body.password){
+        password = await bcrypt.hash(
+          req.body.password ,
+          10
+        );
+      }
       const user = await User.create({ ...req.body, password });
-      res.send(user);
+      res.status(201).send({ msg: "User succesfully created", user });
     } catch (error) {
-      console.error(error)
-      next(error)
+      console.error(error);
+      next(error);
     }
   },
 
@@ -49,6 +55,19 @@ const UserController = {
       res.status(500).send({
         message: "Error while disconnecting",
       });
+    }
+  },
+
+  async getInfoUser(req, res) {
+    try {
+      const user = await User.findById(req.user._id).populate({
+        populate: {
+         path: "postIds",
+       },
+     });
+      res.send(user);
+    } catch (error) {
+      console.error(error);
     }
   },
 }
