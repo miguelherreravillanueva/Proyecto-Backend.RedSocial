@@ -36,4 +36,4 @@ Also, I have used Trello tool to keep an organization of the project.
 
 ----
 
-Written by [Miguel Herrera](https://github.com/miguelherreravillanueva)
+Developed by [Miguel Herrera](https://github.com/miguelherreravillanueva)
