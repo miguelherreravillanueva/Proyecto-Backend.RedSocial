@@ -86,33 +86,34 @@ const PostController = {
         }
     },
 
-    // async dropLikePost(req, res) {
-    //     try {
-    //         const post = await Post.findByIdAndDelete(
-    //             req.params._id,
-    //             { $pull: { likes: req.user._id } },
-    //             { new: true }
-    //         );
-    //         res.send(post);
-    //     } catch (error) {
-    //         console.error(error);
-    //         res.status(500).send({ message: "There was a problem while dropping your like" });
-    //     }
-    // },
+    async deleteLikePost(req, res) {
+        try {
+            const post = await Post.findByIdAndUpdate(
+                req.params._id,
+                { $pull: { likes: req.user._id } },
+                { new: true }
+            );
+            await User.findByIdAndUpdate(req.user._id, { new: true });
+            res.send({ post, message: "Like dropped" });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: "There was a problem while dropping your like" });
+        }
+    },
 
     async getAllPosts(req, res) {
         try {
             const { page = 1, limit = 10 } = req.query;
             const post = await Post.find()
-            .populate("commentId")
-            .populate("userId")
+                .populate("commentId")
+                .populate("userId")
                 .limit(limit)
                 .skip((page - 1) * limit);
             res.send(post);
         } catch (error) {
             console.error(error);
         }
-    },  
+    },
 }
 
 module.exports = PostController;
