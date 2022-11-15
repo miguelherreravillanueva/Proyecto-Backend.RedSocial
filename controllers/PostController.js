@@ -4,9 +4,9 @@ const User = require("../models/User.js");
 const PostController = {
     async createPost(req, res, next) {
         try {
-            const post = await Post.create({ ...req.body, userId: req.user._id }); //dónde tengo que guardar el id? y cuál id?
+            const post = await Post.create({ ...req.body, userId: req.user._id });
             await User.findByIdAndUpdate(req.user._id, {
-                $push: { commentId: comment._id }
+                $push: { postIds: post._id }
             })
             res.status(201).send(post);
         } catch (error) {
@@ -104,7 +104,8 @@ const PostController = {
         try {
             const { page = 1, limit = 10 } = req.query;
             const post = await Post.find()
-            .populate("comments.userId")// por que no tira?
+            .populate("commentId")
+            .populate("userId")
                 .limit(limit)
                 .skip((page - 1) * limit);
             res.send(post);
