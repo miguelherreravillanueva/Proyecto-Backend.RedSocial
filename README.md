@@ -10,6 +10,7 @@ For this project it has been needed to develop an REST API capable of the follow
 - User login + token + middleware.
 - Creating of a CRUD.
 - Give/remove "Like" at a post.
+- Backend available in production.
 
 Also, one of the essential requirements of the project has been the use of branches on Git (personal, develop and main).
 
@@ -17,6 +18,7 @@ Also, one of the essential requirements of the project has been the use of branc
 ## Technologies used 💻
 
 For this project I have used Node, Express, MongoDB Cloud and Mongoose technologies, and the Postman API platform.
+Also, I have used Trello tool to keep an organization of the project.
 
 
 ### Preview 
@@ -24,7 +26,7 @@ For this project I have used Node, Express, MongoDB Cloud and Mongoose technolog
 - Postman general overview
     User Get Info User & Get Post By Title endpoint.
 
-![foto](assets/Postman.gif)
+![foto](assets/screen-recording.gif)
 
 
 - MongoDB Cloud Posts overview
