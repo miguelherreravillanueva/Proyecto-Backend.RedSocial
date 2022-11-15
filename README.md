@@ -1,4 +1,4 @@
-# Backend 2nd Project - Social web 
+# Backend 2nd Project - Social Web 
 
 The following project consists on the creation of a social web in which the knowledge acquired in Node and Express technologies is combined, in addition to MongoDB Cloud and Mongoose.
 
@@ -8,7 +8,7 @@ For this project it has been needed to develop an REST API capable of the follow
 
 - User registration using Bcrypt.
 - User login + token + middleware.
-- Creating of a CRUD.
+- Creation of a CRUD.
 - Give/remove "Like" at a post.
 - Backend available in production.
 
