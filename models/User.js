@@ -34,6 +34,10 @@ UserSchema.methods.toJSON = function () {
     return user;
 }
 
+UserSchema.index({
+    name: "text",
+});
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;

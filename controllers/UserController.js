@@ -7,9 +7,9 @@ const UserController = {
   async createUser(req, res, next) {
     try {
       let password;
-      if(req.body.password){
+      if (req.body.password) {
         password = await bcrypt.hash(
-          req.body.password ,
+          req.body.password,
           10
         );
       }
@@ -63,14 +63,45 @@ const UserController = {
       const user = await User.findById(req.user._id).populate({
         path: "commentIds",
         populate: {
-         path: "postIds",
-       },
-     });
+          path: "postIds",
+        },
+      });
       res.send(user);
     } catch (error) {
       console.error(error);
     }
   },
+
+  async getUserById(req, res) {
+    try {
+      const user = await User.findById(req.params._id);
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        msg: "Error while getting the user",
+        error,
+      });
+    }
+  },
+
+  async getUserByName(req, res) {
+    try {
+        const users = await User.find({
+            $text: {
+                $search: req.params.name,
+            },
+        });
+        res.send(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            msg: "Error while getting the user",
+            error,
+        });
+    }
+},
+
 }
 
 module.exports = UserController
