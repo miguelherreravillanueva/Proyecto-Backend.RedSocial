@@ -33,7 +33,7 @@ const PostController = {
     async deletePostById(req, res) {
         try {
             const post = await Post.findByIdAndDelete(req.params._id);
-            res.send({ post, message: "Post deleted" });
+            res.send({ message: "Post deleted", post });
         } catch (error) {
             console.error(error);
             res.status(500).send({
