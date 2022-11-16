@@ -66,7 +66,7 @@ const UserController = {
           path: "postIds",
         },
       });
-      res.send(user);
+      res.send({ msg: "Here is the info of the user", user });
     } catch (error) {
       console.error(error);
     }
@@ -75,7 +75,7 @@ const UserController = {
   async getUserById(req, res) {
     try {
       const user = await User.findById(req.params._id);
-      res.send(user);
+      res.send({ msg: "Here you have the user", user });
     } catch (error) {
       console.error(error);
       res.status(500).send({
@@ -87,21 +87,39 @@ const UserController = {
 
   async getUserByName(req, res) {
     try {
-        const users = await User.find({
-            $text: {
-                $search: req.params.name,
-            },
-        });
-        res.send(users);
+      const users = await User.find({
+        $text: {
+          $search: req.params.name,
+        },
+      });
+      res.send({ msg: "Here you have the users", users });
     } catch (error) {
-        console.error(error);
-        res.status(500).send({
-            msg: "Error while getting the user",
-            error,
-        });
+      console.error(error);
+      res.status(500).send({
+        msg: "Error while getting the user",
+        error,
+      });
     }
-},
+  },
 
+  async followUser(req, res) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        req.params._id,
+        { $push: { followers: req.user._id } },
+        { new: true }
+      );
+      await User.findByIdAndUpdate(
+        req.user._id,
+        { $push: { following: req.params._id } },
+        { new: true }
+      );
+      res.send({ msg: "You have followed the user", user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "There was a problem following the user" });
+    }
+  }
 }
 
 module.exports = UserController

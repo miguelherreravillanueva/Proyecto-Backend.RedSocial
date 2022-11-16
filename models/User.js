@@ -25,6 +25,15 @@ const UserSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Post"
     }],
+    followers: [{
+        type: ObjectId,
+        ref: 'User'
+    }],
+    following: [{
+        type: ObjectId,
+        ref: 'User'
+    }],
+
 }, { timestamps: true });
 
 UserSchema.methods.toJSON = function () {

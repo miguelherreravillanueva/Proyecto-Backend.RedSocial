@@ -9,6 +9,6 @@ router.delete("/logoutUser",authentication, UserController.logoutUser)
 router.get("/getInfoUser",authentication,UserController.getInfoUser) 
 router.get("/getUserById/:_id",UserController.getUserById)
 router.get("/getUserByName/:name",UserController.getUserByName)
-
+router.get("/followUser/:_id",authentication,UserController.followUser)
 
 module.exports = router;
