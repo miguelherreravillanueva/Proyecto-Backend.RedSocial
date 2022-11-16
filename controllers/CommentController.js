@@ -19,20 +19,20 @@ const CommentController = {
         }
     },
 
-    // async updateCommentById(req, res) {
-    //     try {
-    //         const comment = await Comment.findByIdAndUpdate(
-    //             req.params._id,
-    //             { body: req.body.body },
-    //             {
-    //                 new: true,
-    //             }
-    //         );
-    //         res.send({ msg: "Comment successfully updated", comment });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // },
+    async updateCommentById(req, res) {
+        try {
+            const comment = await Comment.findByIdAndUpdate(
+                req.params._id,
+                { body: req.body.body },
+                {
+                    new: true,
+                }
+            );
+            res.send({ msg: "Comment successfully updated", comment });
+        } catch (error) {
+            console.error(error);
+        }
+    },
 
     async getComments(req, res) {
         try {
@@ -40,6 +40,18 @@ const CommentController = {
             res.send(comments);
         } catch (error) {
             console.error(error);
+        }
+    },
+
+    async deleteCommentById(req, res) {
+        try {
+            const comment = await Comment.findByIdAndDelete(req.params._id);
+            res.send({ msg: "Comment deleted", comment });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                msg: "There was a problem while deleting your comment",
+            });
         }
     },
 }

@@ -37,7 +37,7 @@ const PostController = {
         } catch (error) {
             console.error(error);
             res.status(500).send({
-                msg: "There was a problem while deleting post",
+                msg: "There was a problem while deleting your post",
             });
         }
     },
