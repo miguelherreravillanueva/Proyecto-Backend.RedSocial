@@ -30,16 +30,18 @@ const CommentController = {
             );
             res.send({ msg: "Comment successfully updated", comment });
         } catch (error) {
-            console.error(error);
+            console.error(error)
+            res.status(500).send({ msg: 'Error while updating your comment' })
         }
     },
 
     async getComments(req, res) {
         try {
             const comments = await Comment.find()
-            res.send(comments);
+            res.send({ msg: "Here are your comments", comments });
         } catch (error) {
-            console.error(error);
+            console.error(error)
+            res.status(500).send({ msg: 'Error while getting the comments' })
         }
     },
 
@@ -52,6 +54,20 @@ const CommentController = {
             res.status(500).send({
                 msg: "There was a problem while deleting your comment",
             });
+        }
+    },
+
+    async likeComment(req, res) {
+        try {
+            const comment = await Comment.findByIdAndUpdate(
+                req.params._id,
+                { $push: { likes: req.user._id } },
+                { new: true }
+            );
+            res.send({ msg: "Comment liked", comment });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ msg: "There was a problem with your like" });
         }
     },
 }

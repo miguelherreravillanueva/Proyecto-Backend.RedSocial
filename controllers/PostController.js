@@ -8,9 +8,10 @@ const PostController = {
             await User.findByIdAndUpdate(req.user._id, {
                 $push: { postIds: post._id }
             })
-            res.status(201).send(post);
+            res.status(201).send({ msg: "Post successfully created", post });
         } catch (error) {
             console.error(error)
+            res.status(500).send({ msg: "Error while creating the post" });
             next(error)
         }
     },
@@ -27,6 +28,7 @@ const PostController = {
             res.send({ msg: "Post successfully updated", post });
         } catch (error) {
             console.error(error);
+            res.status(500).send({ msg: "Error while updating the post" });
         }
     },
 
@@ -44,12 +46,12 @@ const PostController = {
 
     async getPostByTitle(req, res) {
         try {
-            const posts = await Post.find({
+            const post = await Post.find({
                 $text: {
                     $search: req.params.title,
                 },
             });
-            res.send(posts);
+            res.send({ msg: "Here is your post", post });
         } catch (error) {
             console.error(error);
             res.status(500).send({
@@ -62,7 +64,7 @@ const PostController = {
     async getPostById(req, res) {
         try {
             const post = await Post.findById(req.params._id);
-            res.send(post);
+            res.send({ msg: "Here is your post", post });
         } catch (error) {
             console.error(error);
             res.status(500).send({
@@ -79,7 +81,7 @@ const PostController = {
                 { $push: { likes: req.user._id } },
                 { new: true }
             );
-            res.send(post);
+            res.send({ msg: "Post liked", post });
         } catch (error) {
             console.error(error);
             res.status(500).send({ msg: "There was a problem with your like" });
@@ -104,14 +106,15 @@ const PostController = {
     async getAllPosts(req, res) {
         try {
             const { page = 1, limit = 10 } = req.query;
-            const post = await Post.find()
+            const posts = await Post.find()
                 .populate("commentId")
                 .populate("userId")
                 .limit(limit)
                 .skip((page - 1) * limit);
-            res.send(post);
+                res.send({ msg: "Here are your comments", posts });
         } catch (error) {
             console.error(error);
+            res.status(500).send({ msg: 'Error while getting the posts' })
         }
     },
 }
