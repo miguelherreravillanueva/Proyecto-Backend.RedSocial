@@ -15,7 +15,7 @@ const CommentController = {
             res.status(201).send({ msg: "Comment succesfully created", comment });
         } catch (error) {
             console.error(error)
-            res.status(500).send({ message: 'Error while posting your comment' })
+            res.status(500).send({ msg: 'Error while posting your comment' })
         }
     },
 
@@ -28,12 +28,20 @@ const CommentController = {
     //                 new: true,
     //             }
     //         );
-    //         res.send({ message: "Comment successfully updated", comment });
+    //         res.send({ msg: "Comment successfully updated", comment });
     //     } catch (error) {
     //         console.error(error);
     //     }
     // },
 
+    async getComments(req, res) {
+        try {
+            const comments = await Comment.find()
+            res.send(comments);
+        } catch (error) {
+            console.error(error);
+        }
+    },
 }
 
 module.exports = CommentController;

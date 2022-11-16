@@ -24,7 +24,7 @@ const PostController = {
                     new: true,
                 }
             );
-            res.send({ message: "Post successfully updated", post });
+            res.send({ msg: "Post successfully updated", post });
         } catch (error) {
             console.error(error);
         }
@@ -33,11 +33,11 @@ const PostController = {
     async deletePostById(req, res) {
         try {
             const post = await Post.findByIdAndDelete(req.params._id);
-            res.send({ message: "Post deleted", post });
+            res.send({ msg: "Post deleted", post });
         } catch (error) {
             console.error(error);
             res.status(500).send({
-                message: "There was a problem while deleting post",
+                msg: "There was a problem while deleting post",
             });
         }
     },
@@ -82,7 +82,7 @@ const PostController = {
             res.send(post);
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "There was a problem with your like" });
+            res.status(500).send({ msg: "There was a problem with your like" });
         }
     },
 
@@ -94,10 +94,10 @@ const PostController = {
                 { new: true }
             );
             await User.findByIdAndUpdate(req.user._id, { new: true });
-            res.send({ post, message: "Like dropped" });
+            res.send({ post, msg: "Like dropped" });
         } catch (error) {
             console.error(error);
-            res.status(500).send({ message: "There was a problem while dropping your like" });
+            res.status(500).send({ msg: "There was a problem while dropping your like" });
         }
     },
 

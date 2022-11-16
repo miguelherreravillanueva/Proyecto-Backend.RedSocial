@@ -37,7 +37,7 @@ const UserController = {
       if (user.tokens.length > 4) user.tokens.shift();
       user.tokens.push(token);
       await user.save();
-      res.send({ message: 'Welcome ' + user.name, token });
+      res.send({ msg: 'Welcome ' + user.name, token });
     } catch (error) {
       console.error(error);
       res.status(500).send(error)
@@ -49,11 +49,11 @@ const UserController = {
       await User.findByIdAndUpdate(req.user._id, {
         $pull: { tokens: req.headers.authorization },
       });
-      res.send({ message: "Successfully disconnected" });
+      res.send({ msg: "Successfully disconnected" });
     } catch (error) {
       console.error(error);
       res.status(500).send({
-        message: "Error while disconnecting",
+        msg: "Error while disconnecting",
       });
     }
   },
