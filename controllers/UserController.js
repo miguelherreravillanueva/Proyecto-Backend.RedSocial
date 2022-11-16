@@ -119,7 +119,37 @@ const UserController = {
       console.error(error);
       res.status(500).send({ msg: "There was a problem following the user" });
     }
-  }
+  },
+
+  async unfollowUser(req, res) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        req.params._id,
+        { $pull: { followers: req.user._id } },
+        { new: true }
+      );
+      await User.findByIdAndUpdate(
+        req.user._id,
+        { new: true }
+      );
+      res.send({ msg: "You have unfollowed the user", user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "There was a problem while unfollowing your like" });
+    }
+  },
+
+  async getAllUsers(req, res) {
+    try {
+         const users = await User.find()
+        .populate("postIds")
+        .populate("followers")
+        res.send({ msg: "Here are your users", users });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: 'Error while getting the users' })
+    }
+  },
 }
 
 module.exports = UserController
