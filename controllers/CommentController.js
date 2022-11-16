@@ -70,6 +70,21 @@ const CommentController = {
             res.status(500).send({ msg: "There was a problem with your like" });
         }
     },
+
+    async deleteLikeComment(req, res) {
+        try {
+            const comment = await Comment.findByIdAndUpdate(
+                req.params._id,
+                { $pull: { likes: req.user._id } },
+                { new: true }
+            );
+            await User.findByIdAndUpdate(req.user._id, { new: true });
+            res.send({ comment, msg: "Comment disliked" });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ msg: "There was a problem while dropping your like" });
+        }
+    },
 }
 
 module.exports = CommentController;
