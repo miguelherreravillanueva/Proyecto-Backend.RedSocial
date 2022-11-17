@@ -1,8 +1,8 @@
 const basicInfo = require('./basicInfo');
 const components = require('./components');
-const comments = require("./comments")
+const users = require("./users")
 module.exports = {
     ...basicInfo,
     ...components,
-    ...comments
+    ...users
 };
