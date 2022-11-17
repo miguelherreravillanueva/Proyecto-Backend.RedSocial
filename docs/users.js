@@ -23,6 +23,29 @@ module.exports = {
           },
         },
       },
+      "/users/loginUser": {
+        post: {                
+          tags: {
+            Users: " - Login User",
+          },
+          description: "Login user",
+          operationId: "loginUser",
+          parameters: [],
+          requestBody: {
+            content: {
+                "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/loginUser",
+                },
+              },
+            },
+          },
+          responses: {
+            200: { description: "User successfully logged" },
+            500: { description: "Server error" },
+          },
+        },
+      },
     },
   };
   

@@ -14,7 +14,8 @@ module.exports = {
                     name: {
                         type: 'string',
                         description: "User's name",
-                        example: "Miguel"
+                        example: "Miguel",
+                        required: true,
                     },
                     email: {
                         type: "string",
@@ -22,13 +23,32 @@ module.exports = {
                         example: "emailexample@gmail.com",
                         required: true,
                         unique: true,
-                      },
-                      password: {
+                    },
+                    password: {
                         type: 'string',
                         description: "User's password",
-                        example: "passwordexample123"
+                        example: "passwordexample123",
+                        required: true,
                     }
-                    }
+                }
+            },
+            loginUser: {
+                type: "object",
+                properties: {
+                    email: {
+                        type: "string",
+                        description: "Email del usuario",
+                        description: "User's email",
+                        example: "emailexample@gmail.com",
+                        required: true,
+                    },
+                    password: {
+                        type: 'string',
+                        description: "User's password",
+                        example: "passwordexample123",
+                        required: true,
+                    },
+                },
             },
             // comment: {
             //     type: 'object',
