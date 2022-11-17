@@ -46,6 +46,25 @@ module.exports = {
           },
         },
       },
+      "/users/logoutUser": {
+        delete: {
+            security: [
+              {
+                ApiKeyAuth: [],
+              },
+            ],
+            tags: {
+                Users: " - Logout User",
+              },
+          description: "Logout user",
+          operationId: "logoutUser",
+          parameters: [],
+          responses: {
+            200: { description: "User successfully disconnected" },
+            500: { description: "Server error" },
+          },
+        },
+      },
     },
   };
   
