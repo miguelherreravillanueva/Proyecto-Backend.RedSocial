@@ -1,27 +1,31 @@
-module.exports = {
-    paths: {
-      "/createComment/:_idks": {
-        post: {
-          tags: {
-            Comment: "Post comments",
-          },
-          description: "Post comments",
-          operationId: "postcomments",
-          parameters: [],
-          responses: {
-            200: {
-              description: "Comments were obtained",
-              content: {
-                "application/json": {
-                  schema: {
-                    $ref: "#/components/schemas/comment",
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  };
+// module.exports = {
+//     paths: {
+//       "/comments/createComment/{_id}": {
+//         post: {
+//             security: [{
+//                 ApiKeyAuth: [ ]
+//             }],      
+//           tags: {
+//             Comments: " - Create Comment",
+//           },
+//           description: "Post comments",
+//           operationId: "postComments",
+//           parameters: [
+//             {
+//               name: "_id",
+//               in: "path",
+//               schema: {
+//                 $ref: "#/components/schemas/_id",
+//               },
+//               description: "Comment's ID",
+//             },
+//           ],
+//           responses: {
+//             200: { description: "Comment successfully created" },
+//             500: { description: "Server error" },
+//           },
+//         },
+//       },
+//     },
+//   };
   

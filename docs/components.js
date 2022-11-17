@@ -8,6 +8,26 @@ module.exports = {
             },
         },
         schemas: {
+            user: {
+                type: 'object',
+                properties: {
+                    _id: {
+                        type: 'objectId',
+                        description: "comment identification number",
+                        example: "6201064b0028de7866e2b2c4"
+                    },
+                    name: {
+                        type: 'string',
+                        description: "User's name",
+                        example: "make an excellent readme"
+                    },
+                    userId: {
+                        type: 'objectId',
+                        description: "user identification number",
+                        example: "6201064b0028de7866e2b2c4"
+                    },
+                }
+            },
             comment: {
                 type: 'object',
                 properties: {
