@@ -1,6 +1,6 @@
-# Backend 2nd Project - Social Web 
+# Backend 2nd Project - Social Network
 
-The following project consists on the creation of a social web in which the knowledge acquired in Node and Express technologies is combined, in addition to MongoDB Cloud and Mongoose.
+The following project consists on the creation of a social network in which the knowledge acquired in Node and Express technologies is combined, in addition to MongoDB Cloud and Mongoose.
 
 ## Description and development of the project 🔧
 
