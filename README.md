@@ -194,7 +194,7 @@ This project is under license of Miguel Herrera
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list my favourites SOCIAL NETWORK projects I have explored and inspired by while doing my app.
+This space is made to list my favourites SOCIAL NETWORK projects that I have explored and inspired by while doing my app.
 
 * https://github.com/radikalex/backend-social-network
 * https://github.com/Molerog/Red-Social
