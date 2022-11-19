@@ -1,4 +1,4 @@
-# Backend 2nd Project - Social Network
+# 2nd Backend Project - Social Network
 
  <h3 align="center">MERN STACK BACKEND PROJECT</h3>
 
