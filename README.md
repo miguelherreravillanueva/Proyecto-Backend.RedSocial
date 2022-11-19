@@ -230,7 +230,8 @@ This space is made to list my favourites SOCIAL NETWORK projects that I have exp
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
-👨‍💻️ Developed by [Miguel Herrera](https://github.com/miguelherreravillanueva)
+
+Developed by [Miguel Herrera](https://github.com/miguelherreravillanueva)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
