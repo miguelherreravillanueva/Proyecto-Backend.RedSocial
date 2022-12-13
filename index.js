@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const swaggerUI= require("swagger-ui-express")
 const docs = require("./docs/index")
 const { typeError }= require('./middlewares/errors');
