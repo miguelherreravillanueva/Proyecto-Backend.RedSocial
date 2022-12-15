@@ -111,7 +111,7 @@ const PostController = {
                 .populate("userId")
                 .limit(limit)
                 .skip((page - 1) * limit);
-                res.send({ msg: "Here are your comments", posts });
+                res.send({ msg: "Here are the posts", posts });
         } catch (error) {
             console.error(error);
             res.status(500).send({ msg: 'Error while getting the posts' })
