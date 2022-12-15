@@ -10,7 +10,7 @@ router.get("/getPostByTitle/:title",PostController.getPostByTitle)
 router.get("/getPostById/:_id",PostController.getPostById)
 router.put('/likes/:_id', authentication, PostController.likePost);
 router.put('/deleteLikes/:_id', authentication, PostController.deleteLikePost);
-router.get('/getAllPosts', authentication, PostController.getAllPosts);
+router.get('/getAllPosts', PostController.getAllPosts);
 
 
 module.exports = router
