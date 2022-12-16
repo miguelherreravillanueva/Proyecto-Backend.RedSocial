@@ -16,6 +16,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please, fill your password."],
     },
+    role: String, 
     tokens: [],
     commentIds: [{
         type: ObjectId,

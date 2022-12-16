@@ -46,16 +46,16 @@ const PostController = {
 
     async getPostByTitle(req, res) {
         try {
-            const post = await Post.find({
+            const posts = await Post.find({
                 $text: {
                     $search: req.params.title,
                 },
             });
-            res.send({ msg: "Here is your post", post });
+            res.send({ msg: "Here is your posts", posts });
         } catch (error) {
             console.error(error);
             res.status(500).send({
-                msg: "Error while getting the post",
+                msg: "Error while getting the posts",
                 error,
             });
         }
