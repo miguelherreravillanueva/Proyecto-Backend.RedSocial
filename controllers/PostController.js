@@ -11,7 +11,7 @@ const PostController = {
             res.status(201).send({ msg: "Post successfully created", post });
         } catch (error) {
             console.error(error)
-            res.status(500).send({ msg: "Error while creating the post" });
+            // res.status(500).send({ msg: "Error while creating the post" });
             next(error)
         }
     },
@@ -109,8 +109,8 @@ const PostController = {
             const posts = await Post.find()
                 .populate("commentId")
                 .populate("userId")
-                .limit(limit)
-                .skip((page - 1) * limit);
+                // .limit(limit)
+                // .skip((page - 1) * limit);
                 res.send({ msg: "Here are the posts", posts });
         } catch (error) {
             console.error(error);

@@ -18,7 +18,7 @@ const handleValidationError = (err, res) => {
     else if (err.code === 11000) {
       res.status(400).send({msg:"The email has to be unique."});
     } else {
-      res.status(500).send(`It has been a problem.`);
+      res.status(500).send(`There has been a problem.`);
     }
   };
   
