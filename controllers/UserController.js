@@ -31,7 +31,7 @@ const UserController = {
       }
       const isMatch = await bcrypt.compare(req.body.password, user.password);
       if (!isMatch) {
-        return res.status(400).send("Incorrect user or password");
+        return res.status(400).send({msg: "Incorrect user or password"});
       }
       const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
       if (user.tokens.length > 4) user.tokens.shift();
