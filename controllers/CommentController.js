@@ -38,7 +38,7 @@ const CommentController = {
     async getComments(req, res) {
         try {
             const comments = await Comment.find()
-            res.send({ msg: "Here are your comments", comments });
+            res.send({ msg: "Here are the comments", comments });
         } catch (error) {
             console.error(error)
             res.status(500).send({ msg: 'Error while getting the comments' })
