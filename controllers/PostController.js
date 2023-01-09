@@ -63,7 +63,7 @@ const PostController = {
     async getPostById(req, res) {
         try {
             const post = await Post.findById(req.params._id)
-            .populate("commentId")
+            .populate("commentIds")
             .populate("userId")
             res.send({ msg: "Here is your post", post });
 } catch (error) {
@@ -109,7 +109,7 @@ const PostController = {
     try {
         const { page = 1, limit = 10 } = req.query;
         const posts = await Post.find()
-            .populate("commentId")
+            .populate("commentIds")
             .populate("userId")
         // .limit(limit)
         // .skip((page - 1) * limit);
